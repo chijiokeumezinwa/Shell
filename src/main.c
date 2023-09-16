@@ -9,6 +9,10 @@
 #define SH_TOKEN_BUFSIZE 64
 #define SH_TOKEN_DELIM " \t\r\n\a"
 
+void sh_loop();
+char *sh_read_line();
+char **sh_split_line(char *line);
+int sh_execute(char **args);
 /*
 function declarations for builtin shell commands:
 */
@@ -131,7 +135,7 @@ void sh_loop(){
 
 char *sh_read_line(){
     char *line = NULL;
-    ssize_t bufsize = 0;
+    size_t bufsize = 0;
 
     //getline will allocate buffer for us
 
@@ -216,7 +220,7 @@ int sh_execute(char **args){
     for(i = 0; i < sh_num_builtins(); i++){
         //this tries to find if the command matches
         //any of the builtin commands
-        if(strcmp(args[0], builtin_str[i] == 0)) {
+        if(strcmp(args[0], builtin_str[i]) == 0) {
             return (*builtin_func[i])(args);
         }
     }
