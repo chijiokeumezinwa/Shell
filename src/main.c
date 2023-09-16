@@ -1,4 +1,10 @@
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+
 #define SH_RL_BUFSIZE 1024
 #define SH_TOKEN_BUFSIZE 64
 #define SH_TOKEN_DELIM " \t\r\n\a"
